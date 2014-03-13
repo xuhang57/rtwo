@@ -10,6 +10,7 @@ from rtwo.driver import EucaDriver, AWSDriver
 
 from libcloud.common.types import InvalidCredsError
 
+
 def _initialize_provider(provider, driverCls, **kwargs):
     try:
         identity = provider.identityCls(provider, **kwargs)
@@ -18,7 +19,7 @@ def _initialize_provider(provider, driverCls, **kwargs):
         driver.list_sizes()
     except InvalidCredsError:
         logger.warn("Credentials are incorrect for provider %s, identity %s"
-                % (provider, identity))
+                    % (provider, identity))
     except Exception as e:
         logger.exception(e)
 
@@ -29,8 +30,7 @@ def _initialize_aws():
         _initialize_provider(AWSProvider(),
                              AWSDriver,
                              key=settings.AWS_KEY,
-                             secret=settings.AWS_SECRET,
-                             user="admin")
+                             secret=settings.AWS_SECRET)
 
 
 def _initialize_euca():

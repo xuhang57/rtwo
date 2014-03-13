@@ -1,5 +1,5 @@
 """
-Atmosphere service size.
+rtwo size.
 
 """
 from abc import ABCMeta
@@ -15,10 +15,6 @@ class Size(BaseSize):
 
     provider = None
 
-    sizes = {}
-
-    lc_sizes = None
-
     def __init__(self, lc_size):
         self._size = lc_size
         self.id = self._size.id
@@ -29,54 +25,9 @@ class Size(BaseSize):
         if hasattr(self._size, 'extra'):
             self.extra = self._size.extra
         else:
-            self.extra = {}  # Placeholder Dict
-        self.cpu = self.extra.get('cpu',0)
-        self.ephemeral = self.extra.get('ephemeral',0)
-
-    @classmethod
-    def create_size(cls, provider, lc_size):
-        size = provider.sizeCls(lc_size)
-        alias = size.id
-        cls.sizes[(provider.identifier, alias)] = size
-        return size
-
-    @classmethod
-    def lookup_size(cls, alias, provider):
-        if cls.sizes.get((provider.identifier, alias)):
-            return cls.sizes[
-                (provider.identifier, alias)
-            ]
-        else:
-            return None
-
-    @classmethod
-    def get_size(cls, lc_size, provider):
-        alias = lc_size.id
-        if cls.sizes.get((provider.identifier, alias)):
-            return cls.sizes[
-                (provider.identifier, alias)
-            ]
-        else:
-            return cls.create_size(provider, lc_size)
-
-    @classmethod
-    def get_sizes(cls, provider, lc_list_sizes_method):
-        if not cls.sizes or not cls.lc_sizes:
-            cls.lc_sizes = lc_list_sizes_method()
-        return sorted(
-            [cls.get_size(size, provider) for size in cls.lc_sizes],
-            key=lambda s: (s.cpu, s._size.ram))
-
-    def reset(self):
-        Size.reset()
-        self._size = None
-        self.lc_sizes = None
-        self.sizes = {}
-
-    @classmethod
-    def reset(cls):
-        cls.lc_sizes = None
-        cls.sizes = {}
+            self.extra = {}
+        self.cpu = self.extra.get('cpu', 0)
+        self.ephemeral = self.extra.get('ephemeral', 0)
 
     def __unicode__(self):
         return str(self)
@@ -90,44 +41,17 @@ class Size(BaseSize):
         return str(self)
 
     def json(self):
-        return {
-            'id': self._size.name,
-            'provider': self.provider.identifier,
-            'alias': self._size.id,
-            'name': self._size.name,
-            'cpu': self.cpu,
-            'ram': self._size.ram,
-            'root': self._size.disk,
-            'disk': self.ephemeral,
-            'bandwidth': self._size.bandwidth,
-            'price': self._size.price}
+        return {'id': self._size.name,
+                'provider': self.provider.identifier,
+                'alias': self._size.id,
+                'name': self._size.name,
+                'cpu': self.cpu,
+                'ram': self._size.ram,
+                'root': self._size.disk,
+                'disk': self.ephemeral,
+                'bandwidth': self._size.bandwidth,
+                'price': self._size.price}
 
-class MockSize(Size):
-    def __init__(self, size_id, provider):
-        self.provider = provider
-        self._size = None
-        self.name = "Unknown Size %s" % size_id
-        self.alias = size_id
-        self.id = size_id
-        self.price = None
-        self.ram = 0
-        self.disk = 0
-        self.extra = {}  # Placeholder Dict
-        self.cpu = 0
-        self.ephemeral = 0
-
-    def json(self):
-        return {
-            'id': self.id,
-            'provider': self.provider.identifier,
-            'alias': self.id,
-            'name': 'MockSize %s' % self.id,
-            'cpu': self.cpu,
-            'ram': '',
-            'root': '',
-            'disk': '',
-            'bandwidth': '',
-            'price': ''}
 
 class EucaSize(Size):
 
