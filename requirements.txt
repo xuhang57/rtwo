@@ -1,10 +1,12 @@
-requests==2.4.1
+requests==2.5.1
 apache-libcloud==0.16.0
 threepio==0.2.0
-rfive==0.2.0
 python-irodsclient==0.4.0
-python-glanceclient==0.13.1
-python-keystoneclient==0.9.0
-python-neutronclient==2.3.6
-python-novaclient==2.18.1
-python-swiftclient==2.2.0
+python-glanceclient==0.15.0
+python-keystoneclient==1.1.0
+python-neutronclient==2.3.10
+python-novaclient==2.20.0
+python-swiftclient==2.3.1
+
+# dev
+ipython==2.4.1
