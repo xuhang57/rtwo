@@ -152,6 +152,27 @@ class OpenStack_Esh_NodeDriver(OpenStack_1_1_NodeDriver):
         "ex_os_services": ["Manage services (os-services)"]
     }
 
+    def __new__(cls, *args, **kwargs):
+        if args:
+            key = args[0]
+        else:
+            print args
+            print kwargs
+            key = kwargs.get("key", None)
+        secret = kwargs.get("secret", None)
+        secure = kwargs.get("secure", False)
+        host = kwargs.get("host", None)
+        port = kwargs.get("port", None)
+        api_version = kwargs.get("api_version", "1.1")
+        return super(OpenStack_Esh_NodeDriver, cls).__new__(
+            cls,
+            key,
+            secret=secret,
+            secure=secure,
+            host=host,
+            port=port,
+            api_version=api_version)
+
     """
     Object builders -- Convert the native dict in to a Libcloud object
     """
