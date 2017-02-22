@@ -86,18 +86,86 @@ class OpenStack_Esh_Connection(OpenStack_1_1_Connection):
         super(OpenStack_Esh_Connection, self).__init__(
             *args, timeout=timeout, **kwargs)
 
+    def _collect_request_id(self, response):
+        request_id = None
+        if 'x-compute-request-id' in response.headers:  # nova
+            request_id = response.headers['x-compute-request-id']
+        elif 'X-Compute-Request-Id' in response.headers:  # nova
+            request_id = response.headers['X-Compute-Request-Id']
+        elif 'x-openstack-request-id' in response.headers:  # keystone
+            request_id = response.headers['x-openstack-request-id']
+        elif 'x-Openstack-Request-Id' in response.headers:  # glance, neutron
+            request_id = response.headers['x-Openstack-Request-Id']
+        response.request_id = request_id
+        return request_id
+
+    def _format_response(self, response):
+        command = "[{status_code}] {headers}"
+        status_code = response.status
+        headers = response.headers
+        response_str = command.format(status_code=status_code, headers=headers)
+        return response_str
+
+    def pre_connect_hook(self, params, headers):
+        """
+        A hook which is called before connecting to the remote server.
+        This hook can perform a final manipulation on the params, headers and
+        url parameters.
+
+        :type params: ``dict``
+        :param params: Request parameters.
+
+        :type headers: ``dict``
+        :param headers: Request headers.
+        """
+        data = headers.pop('_post_data', "")
+        curl_output = self._to_curl(data, params, headers)
+        logger.info("Libcloud REQ: %s" % curl_output)
+        print "Libcloud REQ: %s" % curl_output
+        return params, headers
+
+    def _to_curl(self, data, params, headers):
+        uri = self.get_endpoint()
+        method = self.method
+        action = self.action.replace(self.request_path, '')
+        action_url = action
+        if params:
+            if '?' in action:
+                action_url = '&'.join((action, urlencode(params, doseq=True)))
+            else:
+                action_url = '?'.join((action, urlencode(params, doseq=True)))
+        uri += action_url
+        headers = ['"{0}: {1}"'.format(k, v) for k, v in headers.items()]
+        headers = " -H ".join(headers)
+        if data:
+            command = "curl -X {method} -H {headers} -d '{data}' '{uri}'"
+            curl_out = command.format(
+                method=method, headers=headers,
+                data=data, uri=uri)
+        else:
+            command = "curl -X {method} -H {headers} '{uri}'"
+            curl_out = command.format(
+                method=method, headers=headers,
+                uri=uri)
+        return curl_out
+
     def request(self, action, params=None,
-                data='', headers=None, method='GET', max_attempts=None):
+                data='', headers={}, method='GET', max_attempts=None):
         if not max_attempts:
             max_attempts = self.max_attempts
         current_attempt = 0
         while current_attempt < max_attempts:
             try:
                 current_attempt += 1
+                headers['_post_data'] = data  # will be removed pre-request send
                 response = super(OpenStack_1_1_Connection, self).request(
                         action=action,
                         params=params, data=data,
                         method=method, headers=headers)
+                self._collect_request_id(response)
+                resp_out = self._format_response(response)
+                #logger.debug("Libcloud RESP: %s" % resp_out)
+                print "Libcloud RESP: %s" % resp_out
                 return response
             except (BaseHTTPError, httplib.HTTPException, socket.error,
                     socket.gaierror, httplib.BadStatusLine), e:
@@ -439,7 +507,6 @@ class OpenStack_Esh_NodeDriver(OpenStack_1_1_NodeDriver):
         """
         conn_kwargs = kwargs.pop('ex_connection_kwargs', {})
         server_params = self._create_args_to_params(None, **kwargs)
-
         resp = self.connection.request("/servers",
                                        method='POST',
                                        data={'server': server_params},
