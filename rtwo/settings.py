@@ -1,11 +1,11 @@
-""" rtwo.settings
+""" giji-rtwo.settings
 
     Try to find usable settings. First try to use atmosphere's secrets,
     if installed. Otherwise try to use test_settings.
 """
 import threepio
 if not threepio.logger:
-    threepio.initialize("rtwo")
+    threepio.initialize("giji_rtwo")
 from threepio import logger
 
 try:
@@ -15,11 +15,11 @@ try:
 except:
     settings = None
     try:
-        from rtwo import local_settings as settings
+        from giji_rtwo import local_settings as settings
         dir(settings)  # Force it to fail.
     except:
         try:
-            from rtwo import test_settings as settings
+            from giji_rtwo import test_settings as settings
             dir(settings)  # Force it to fail.
         except:
             settings = None

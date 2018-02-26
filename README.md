@@ -1,7 +1,7 @@
-rtwo
+giji-rtwo
 ====
 
-[![Build Status](https://travis-ci.org/cyverse/rtwo.svg?branch=master)](https://travis-ci.org/cyverse/rtwo)
+[![Build Status](https://travis-ci.org/CCI-MOC/giji-rtwo.svg?branch=master)](https://travis-ci.org/CCI-MOC/giji-rtwo)
 
 A unified interface into multiple cloud providers.
 
@@ -10,26 +10,26 @@ Built on top of Apache libcloud with support for modern OpenStack. Also supports
 # Install #
 
 ```bash
-pip install rtwo
+pip install giji-rtwo
 ```
 
 ## Or from source ##
 
 ```bash
-pip install -e git://github.com/cyverse/rtwo#egg=rtwo
+pip install -e git://github.com/CCI-MOC/giji-rtwo#egg=giji-rtwo
 ```
 
 # Use #
 ```python
-In [1]: import rtwo
+In [1]: import giji_rtwo
 
-In [2]: from rtwo.provider import OSProvider
+In [2]: from giji_rtwo.provider import OSProvider
 
-In [3]: from rtwo.identity import OSIdentity
+In [3]: from giji_rtwo.identity import OSIdentity
 
-In [4]: from rtwo.driver import OSDriver
+In [4]: from giji_rtwo.driver import OSDriver
 
-In [5]: from rtwo.accounts.openstack import AccountDriver
+In [5]: from giji_rtwo.accounts.openstack import AccountDriver
 
 In [6]: osp = OSProvider()
 
@@ -49,9 +49,9 @@ In [11]: sizes = osdriver.list_sizes()
 
 In [12]: machines = osdriver.list_machines()
 In [13]: osdriver.create_instance(name="Lame.", image=machines[-1], size=sizes[1])
-Out[13]: <class 'rtwo.instance.OSInstance'> {'name': 'Lame.', 'ip': None, 'machine': {'alias': '7819f88b-b335-449d-b17f-ed3af350c918', 'provider': 'OpenStack', 'id': '7819f88b-b335-449d-b17f-ed3af350c918', 'name': 'Ubuntu 12.04 NoGui 4GB 64-bit bare'}, 'alias': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'provider': 'OpenStack', 'id': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'size': {'alias': '2', 'bandwidth': None, 'disk': 10, 'name': 'm1.small', 'price': 0.0, 'ram': 2048, 'id': 'm1.small', 'cpu': 1}}
+Out[13]: <class 'giji_rtwo.instance.OSInstance'> {'name': 'Lame.', 'ip': None, 'machine': {'alias': '7819f88b-b335-449d-b17f-ed3af350c918', 'provider': 'OpenStack', 'id': '7819f88b-b335-449d-b17f-ed3af350c918', 'name': 'Ubuntu 12.04 NoGui 4GB 64-bit bare'}, 'alias': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'provider': 'OpenStack', 'id': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'size': {'alias': '2', 'bandwidth': None, 'disk': 10, 'name': 'm1.small', 'price': 0.0, 'ram': 2048, 'id': 'm1.small', 'cpu': 1}}
 In [14]: osdriver.list_instances()
-Out[14]: [<class 'rtwo.instance.OSInstance'> {'name': 'Lame.', 'ip': None, 'machine': {'alias': '7819f88b-b335-449d-b17f-ed3af350c918', 'provider': 'OpenStack', 'id': '7819f88b-b335-449d-b17f-ed3af350c918', 'name': 'Ubuntu 12.04 NoGui 4GB 64-bit bare'}, 'alias': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'provider': 'OpenStack', 'id': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'size': {'alias': '2', 'bandwidth': None, 'disk': 10, 'name': 'm1.small', 'price': 0.0, 'ram': 2048, 'id': 'm1.small', 'cpu': 1}}]
+Out[14]: [<class 'giji_rtwo.instance.OSInstance'> {'name': 'Lame.', 'ip': None, 'machine': {'alias': '7819f88b-b335-449d-b17f-ed3af350c918', 'provider': 'OpenStack', 'id': '7819f88b-b335-449d-b17f-ed3af350c918', 'name': 'Ubuntu 12.04 NoGui 4GB 64-bit bare'}, 'alias': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'provider': 'OpenStack', 'id': '2b3a1021-aaed-439f-a6b6-5e6f1a9d1fd5', 'size': {'alias': '2', 'bandwidth': None, 'disk': 10, 'name': 'm1.small', 'price': 0.0, 'ram': 2048, 'id': 'm1.small', 'cpu': 1}}]
 ```
 
 # License

@@ -4,10 +4,10 @@ Atmosphere service instance.
 """
 from threepio import logger
 
-from rtwo.models.provider import AWSProvider, EucaProvider, OSProvider
-from rtwo.models.volume import OSVolume, Volume, MockVolume
-from rtwo.models.machine import OSMachine, Machine, MockMachine
-from rtwo.models.size import Size, MockSize
+from giji_rtwo.models.provider import AWSProvider, EucaProvider, OSProvider
+from giji_rtwo.models.volume import OSVolume, Volume, MockVolume
+from giji_rtwo.models.machine import OSMachine, Machine, MockMachine
+from giji_rtwo.models.size import Size, MockSize
 
 
 class Instance(object):
@@ -178,7 +178,7 @@ class OSInstance(Instance):
         if not volume:
             return None
         source = OSVolume(volume)
-        source._volume = None  # FIXME: This is done to avoid un-pickleable errors. A refactor of rtwo should _REMOVE_ the idea of '.source' and these complex/compound objects.
+        source._volume = None  # FIXME: This is done to avoid un-pickleable errors. A refactor of giji_rtwo should _REMOVE_ the idea of '.source' and these complex/compound objects.
         return source
 
     def _test_node_is_booted_volume(self, driver, node, attachments=[]):

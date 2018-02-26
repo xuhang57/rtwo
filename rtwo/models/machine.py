@@ -4,7 +4,7 @@ Atmosphere service machine.
 """
 from abc import ABCMeta
 
-from rtwo.models.provider import AWSProvider, EucaProvider, OSProvider
+from giji_rtwo.models.provider import AWSProvider, EucaProvider, OSProvider
 
 from threepio import logger
 

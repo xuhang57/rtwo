@@ -16,11 +16,11 @@ from novaclient.exceptions import OverLimit
 
 from threepio import logger
 
-from rtwo import settings
+from giji_rtwo import settings
 
-from rtwo.drivers.openstack_user import UserManager
-from rtwo.drivers.openstack_network import NetworkManager
-from rtwo.drivers.common import _connect_to_glance, _connect_to_nova,\
+from giji_rtwo.drivers.openstack_user import UserManager
+from giji_rtwo.drivers.openstack_network import NetworkManager
+from giji_rtwo.drivers.common import _connect_to_glance, _connect_to_nova,\
     _connect_to_keystone
 
 

@@ -6,7 +6,7 @@ to!
 import unittest
 from mock import Mock, patch
 
-from rtwo.test.secrets import OPENSTACK_PARAMS
+from giji_rtwo.test.secrets import OPENSTACK_PARAMS
 
 from libcloud.utils.py3 import httplib
 from libcloud.utils.py3 import method_type
@@ -23,7 +23,7 @@ from libcloud.compute.drivers.openstack import (
 from libcloud.test.compute.test_openstack import OpenStack_1_1_MockHttp, \
                                                  OpenStackMockHttp
 from libcloud.test.compute.test_openstack import OpenStack_1_1_Tests
-from rtwo.drivers.openstack_facade import OpenStack_Esh_Connection,OpenStack_Esh_NodeDriver
+from giji_rtwo.drivers.openstack_facade import OpenStack_Esh_Connection,OpenStack_Esh_NodeDriver
 
 ######
 

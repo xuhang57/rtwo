@@ -6,8 +6,10 @@ script:
   - python setup.py install 
 deploy:
   provider: pypi
-  user: atmosphere
+  user: xuhang57
+  distributions: sdist bdist_wheel
   password:
-    secure: RpKQdpwtHPtS2NBE1J/VkwA98I1GPWCXAbsviScYuaDvqDmGsbMRvo4yp4/luza3iSJJVw+HR+GjmN2S0F++k9nHRLoBGjyLs0FWSUw0P0wsVq2A9+hpgLbxygBoLD5Q7RhxqVHoIabmalgIN7qBUU4wMG/PULRNGGxKkorghdU=
+    secure: R9rLaHw/jbavX4xIk3cBWBQcqj2cIZt9yUG3pgqI3NgkHFJrPZFDl0hTmFRok8NiPxFY3kp0kGUWGuMSGMmvygGuuvDlBGV/hXv2VjwnD22SdI4fbwQVAmEH9x98G+szZEOyT3p6EP1wa+x8JEssEWJFCSU1pqKgjgmtf8E20GQs2Om4CohrhYaQZDxxYLImyLlkDIDOFFrtl3ZFdMyNvbTN+IwejLNiWwi7mbL6IDt0ODMgyHsHdQEZYFoZlDr6zyrYwCT1aM0r6JsoUwXaUKCBqaR7eCmo1fi2Kfz6JB1WmK6hB+d7o8r0k7VsYbSMKP4oHHnjjacLMpTP3XXdgcbQJ12Zq/yfFoCZftsI8JvxcxAg/zMsKG5vEFMlCM+zaDX0NGz3PCFW8R1mhRjaJr2bEgBNdvxbg5ojQvNDyCVUkFhYTBj3JU0aDMQNPFJLZ7yj1Qk0zNmu5gx737qq3pcWhrfTKEpAWik6C6EgiWpa/aMxPnMerJ5VjtGFIu4qs2b/av87mW4m5lMU+oAzq466GkvkSaNFZPtLKhPvnKPZuoXPqPiXkZz4wVBsz8lHMrM+TK9pgtLfZWOBxxRKeY+hR6lC8W0CzVsjg3mTMnpJPlqhGZWQBcRxm9Iq2iWCGu/jkubYKOm+RwD4jZNxHeAQqBWRs5LOx788DvWTiCg=
   on:
     tags: true
+

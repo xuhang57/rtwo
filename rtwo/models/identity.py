@@ -6,8 +6,8 @@ from abc import ABCMeta, abstractmethod
 
 from threepio import logger
 
-from rtwo.exceptions import MissingArgsException
-from rtwo.models.provider import AWSProvider, EucaProvider, OSProvider, MockProvider
+from giji_rtwo.exceptions import MissingArgsException
+from giji_rtwo.models.provider import AWSProvider, EucaProvider, OSProvider, MockProvider
 
 
 class BaseIdentity(object):

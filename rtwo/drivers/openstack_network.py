@@ -3,7 +3,7 @@ OpenStack Network Admin Libarary
 
     Create:
     # To create a libcloud driver use the lc_driver_init method.
-    # For instance with an rtwo OpenStack driver it's driver._connection.
+    # For instance with an giji_rtwo OpenStack driver it's driver._connection.
     nm = NetworkManager.lc_driver_init(driver._connection)
 
     Use this library to:
@@ -15,7 +15,7 @@ import netaddr
 
 from threepio import logger
 
-from rtwo.drivers.common import _connect_to_heat, _connect_to_sahara, _connect_to_neutron, _connect_to_keystone_v3
+from giji_rtwo.drivers.common import _connect_to_heat, _connect_to_sahara, _connect_to_neutron, _connect_to_keystone_v3
 from neutronclient.common.exceptions import NeutronClientException, NotFound
 
 ROUTER_INTERFACE_NAMESPACE = (

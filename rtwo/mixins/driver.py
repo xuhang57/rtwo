@@ -1,5 +1,5 @@
 """
-Rtwo mixins for drivers
+giji-rtwo mixins for drivers
 Mixin classes implement additional functionality for Drivers.
 """
 from threepio import logger

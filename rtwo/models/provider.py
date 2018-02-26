@@ -8,11 +8,11 @@ from libcloud.compute.types import Provider as LProvider
 
 from threepio import logger
 
-from rtwo.drivers.openstack_facade import OpenStack_Esh_NodeDriver
-from rtwo.drivers.eucalyptus import Eucalyptus_Esh_NodeDriver
-from rtwo.drivers.aws import Esh_EC2NodeDriver
+from giji_rtwo.drivers.openstack_facade import OpenStack_Esh_NodeDriver
+from giji_rtwo.drivers.eucalyptus import Eucalyptus_Esh_NodeDriver
+from giji_rtwo.drivers.aws import Esh_EC2NodeDriver
 
-from rtwo.exceptions import ServiceException
+from giji_rtwo.exceptions import ServiceException
 
 
 def lc_provider_id(provider):
@@ -127,12 +127,12 @@ class AWSProvider(Provider):
 
     @classmethod
     def set_meta(cls):
-        from rtwo.models.identity import AWSIdentity
-        from rtwo.models.machine import AWSMachine
-        from rtwo.models.instance import AWSInstance
-        from rtwo.models.size import AWSSize
-        from rtwo.models.volume import AWSVolume
-        from rtwo.meta import AWSMeta
+        from giji_rtwo.models.identity import AWSIdentity
+        from giji_rtwo.models.machine import AWSMachine
+        from giji_rtwo.models.instance import AWSInstance
+        from giji_rtwo.models.size import AWSSize
+        from giji_rtwo.models.volume import AWSVolume
+        from giji_rtwo.meta import AWSMeta
         cls.identityCls = AWSIdentity
         cls.machineCls = AWSMachine
         cls.instanceCls = AWSInstance
@@ -183,12 +183,12 @@ class EucaProvider(Provider):
 
     @classmethod
     def set_meta(cls):
-        from rtwo.models.identity import EucaIdentity
-        from rtwo.models.machine import EucaMachine
-        from rtwo.models.instance import EucaInstance
-        from rtwo.models.size import EucaSize
-        from rtwo.models.volume import EucaVolume
-        from rtwo.meta import EucaMeta
+        from giji_rtwo.models.identity import EucaIdentity
+        from giji_rtwo.models.machine import EucaMachine
+        from giji_rtwo.models.instance import EucaInstance
+        from giji_rtwo.models.size import EucaSize
+        from giji_rtwo.models.volume import EucaVolume
+        from giji_rtwo.meta import EucaMeta
         cls.identityCls = EucaIdentity
         cls.machineCls = EucaMachine
         cls.instanceCls = EucaInstance
@@ -265,12 +265,12 @@ class OSProvider(Provider):
 
     @classmethod
     def set_meta(cls):
-        from rtwo.models.identity import OSIdentity
-        from rtwo.models.machine import OSMachine
-        from rtwo.models.instance import OSInstance
-        from rtwo.models.size import OSSize
-        from rtwo.models.volume import OSVolume
-        from rtwo.meta import OSMeta
+        from giji_rtwo.models.identity import OSIdentity
+        from giji_rtwo.models.machine import OSMachine
+        from giji_rtwo.models.instance import OSInstance
+        from giji_rtwo.models.size import OSSize
+        from giji_rtwo.models.volume import OSVolume
+        from giji_rtwo.meta import OSMeta
         cls.identityCls = OSIdentity
         cls.machineCls = OSMachine
         cls.instanceCls = OSInstance

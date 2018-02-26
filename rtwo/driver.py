@@ -15,20 +15,20 @@ from libcloud.compute.types import DeploymentError
 
 from threepio import logger
 
-from rtwo import settings
-from rtwo.drivers.common import LoggedScriptDeployment
+from giji_rtwo import settings
+from giji_rtwo.drivers.common import LoggedScriptDeployment
 
-from rtwo.exceptions import MissingArgsException, ServiceException
+from giji_rtwo.exceptions import MissingArgsException, ServiceException
 
-from rtwo.models.provider import AWSProvider
-from rtwo.models.provider import EucaProvider
-from rtwo.models.provider import OSProvider, MockProvider
+from giji_rtwo.models.provider import AWSProvider
+from giji_rtwo.models.provider import EucaProvider
+from giji_rtwo.models.provider import OSProvider, MockProvider
 
-from rtwo.models.identity import AWSIdentity
-from rtwo.models.identity import EucaIdentity
-from rtwo.models.identity import OSIdentity, MockIdentity
+from giji_rtwo.models.identity import AWSIdentity
+from giji_rtwo.models.identity import EucaIdentity
+from giji_rtwo.models.identity import OSIdentity, MockIdentity
 
-from rtwo.mixins.driver import APIFilterMixin, MetaMixin,\
+from giji_rtwo.mixins.driver import APIFilterMixin, MetaMixin,\
     InstanceActionMixin
 
 
@@ -712,7 +712,7 @@ class AWSDriver(EshDriver):
         instance = super(AWSDriver, self).deploy_instance(*args, **kwargs)
         created = datetime.strptime(instance.extra['created'],
                                     "%Y-%m-%dT%H:%M:%SZ")
-        # NOTE: Removed for rtwo port. Moved to service tasks.
+        # NOTE: Removed for giji_rtwo port. Moved to service tasks.
         # send_instance_email(username, instance.id, instance.ip,
         # created, username)
         return instance

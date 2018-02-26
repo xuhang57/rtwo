@@ -10,15 +10,15 @@ import urlparse
 
 from threepio import logger
 
-from rtwo import settings
+from giji_rtwo import settings
 
-from rtwo.models.provider import AWSProvider, EucaProvider, OSProvider,\
+from giji_rtwo.models.provider import AWSProvider, EucaProvider, OSProvider,\
     OSValhallaProvider
-from rtwo.models.identity import AWSIdentity, EucaIdentity, OSIdentity
-from rtwo.driver import AWSDriver, EucaDriver, OSDriver
-from rtwo.linktest import active_instances
+from giji_rtwo.models.identity import AWSIdentity, EucaIdentity, OSIdentity
+from giji_rtwo.driver import AWSDriver, EucaDriver, OSDriver
+from giji_rtwo.linktest import active_instances
 
-from rtwo.accounts.openstack import AccountDriver as OSAccountDriver
+from giji_rtwo.accounts.openstack import AccountDriver as OSAccountDriver
 
 
 class BaseMeta(object):

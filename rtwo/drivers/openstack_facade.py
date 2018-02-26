@@ -35,9 +35,9 @@ from requests.exceptions import BaseHTTPError
 
 from rfive.fabricSSH import FabricSSHClient
 
-from rtwo.exceptions import NonZeroDeploymentException, ConnectionFailure
-from rtwo.drivers.openstack_network import NetworkManager
-from rtwo.drivers.openstack_user import UserManager
+from giji_rtwo.exceptions import NonZeroDeploymentException, ConnectionFailure
+from giji_rtwo.drivers.openstack_network import NetworkManager
+from giji_rtwo.drivers.openstack_user import UserManager
 import functools
 
 def swap_service_catalog(service_type=None, name=None):

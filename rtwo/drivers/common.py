@@ -25,7 +25,7 @@ from libcloud.compute.deployment import ScriptDeployment
 
 from threepio import logger
 
-from rtwo.version import version_str as rtwo_version
+from giji_rtwo.version import version_str as giji_rtwo_version
 
 
 class LoggedScriptDeployment(ScriptDeployment):
@@ -223,7 +223,7 @@ def _connect_to_openstack_sdk(*args, **kwargs):
 
     user_profile.set_version('identity', 'v%s' % identity_version)
     user_profile.set_interface('identity', 'admin')
-    user_agent = "rtwo/%s" % (rtwo_version(),)
+    user_agent = "giji_rtwo/%s" % (giji_rtwo_version(),)
     stack_sdk = openstack_sdk.Connection(
         user_agent=user_agent,
         profile=user_profile,

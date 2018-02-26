@@ -12,7 +12,7 @@ from novaclient.exceptions import NotFound as NovaNotFound
 
 from threepio import logger
 
-from rtwo.drivers.common import (
+from giji_rtwo.drivers.common import (
     _connect_to_nova_by_auth, _connect_to_glance_by_auth,
     _connect_to_keystone_auth_v3, _connect_to_keystone_v3,
     _connect_to_glance, _connect_to_keystone,

@@ -1,19 +1,19 @@
-""" rtwo
+""" giji-rtwo
 """
 import logging
 import os
 
 import threepio
 
-import rtwo
+import giji_rtwo
 
 LOGGING_LEVEL = logging.INFO
 DEP_LOGGING_LEVEL = logging.WARN # Logging level for dependencies.
 LOG_FILENAME = os.path.abspath(os.path.join(
-    os.path.dirname(rtwo.__file__),
+    os.path.dirname(giji_rtwo.__file__),
     '..',
-    'logs/rtwo.log'))
-threepio.initialize("rtwo",
+    'logs/giji_rtwo.log'))
+threepio.initialize("giji_rtwo",
                     log_filename=LOG_FILENAME,
                     app_logging_level=LOGGING_LEVEL,
                     dep_logging_level=DEP_LOGGING_LEVEL)

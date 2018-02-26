@@ -6,7 +6,7 @@ from abc import ABCMeta
 
 from threepio import logger
 
-from rtwo.models.provider import AWSProvider, EucaProvider, OSProvider
+from giji_rtwo.models.provider import AWSProvider, EucaProvider, OSProvider
 
 
 class BaseVolume(object):

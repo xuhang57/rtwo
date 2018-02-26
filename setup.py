@@ -7,28 +7,27 @@ from unittest import TextTestRunner, TestLoader
 from glob import glob
 from os.path import splitext, basename, join as pjoin
 import setuptools
-from rtwo.version import get_version, read_requirements
+from giji_rtwo.version import get_version, read_requirements
 
 readme = open('README.md').read()
 dependencies, requirements = read_requirements('requirements.txt')
 
 long_description = """
-rtwo %s
+giji-rtwo %s
 A unified interface into multiple cloud providers.
 
-To install use pip install git+git://git@github.com:iPlantCollaborativeOpenSource/rtwo.git
-
+Fork from cyverse/rtwo
 ----
 
 %s
 
 ----
 
-For more information, please see: https://github.com/iPlantCollaborativeOpenSource/rtwo
+For more information, please see: https://github.com/CCI-MOC/giji-rtwo
 """ % (get_version('short'), readme)
 
 
-TEST_PATHS = ['rtwo/test',]
+TEST_PATHS = ['giji_rtwo/test',]
 class TestCommand(Command):
     description = "run test suite"
     user_options = []
@@ -58,13 +57,13 @@ class TestCommand(Command):
         sys.exit(status)
 
     def _run_tests(self):
-        secrets_current = pjoin(self._dir, 'rtwo/test', 'secrets.py')
-        secrets_dist = pjoin(self._dir, 'rtwo/test', 'secrets.py.dist')
+        secrets_current = pjoin(self._dir, 'giji_rtwo/test', 'secrets.py')
+        secrets_dist = pjoin(self._dir, 'giji_rtwo/test', 'secrets.py.dist')
 
         if not os.path.isfile(secrets_current):
             print("Missing " + secrets_current)
             print("Maybe you forgot to copy it from .dist:")
-            print("cp rtwo/test/secrets.py.dist rtwo/test/secrets.py")
+            print("cp giji_rtwo/test/secrets.py.dist giji_rtwo/test/secrets.py")
             sys.exit(1)
 
         mtime_current = os.path.getmtime(secrets_current)
@@ -87,14 +86,14 @@ class TestCommand(Command):
         return not res.wasSuccessful()
 
 setuptools.setup(
-    name='rtwo',
+    name='giji-rtwo',
     version=get_version('short'),
-    author='iPlant Collaborative',
-    author_email='atmodevs@gmail.com',
+    author='MOC',
+    author_email='xuh@massopen.cloud',
     description="A unified interface into multiple cloud providers.",
     long_description=long_description,
     license="BSD License, 3 clause",
-    url="https://github.com/iPlantCollaborativeOpenSource/rtwo",
+    url="https://github.com/CCI-MOC/giji-rtwo",
     packages=setuptools.find_packages(),
     dependency_links=dependencies,
     install_requires=requirements,
